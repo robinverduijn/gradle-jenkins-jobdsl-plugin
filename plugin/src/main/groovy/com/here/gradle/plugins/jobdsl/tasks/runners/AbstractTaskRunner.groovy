@@ -26,6 +26,8 @@ import com.here.gradle.plugins.jobdsl.util.DslConfig
 
 import groovy.json.JsonSlurper
 
+import hudson.CustomPluginManager
+
 import javaposse.jobdsl.dsl.DslScriptLoader
 import javaposse.jobdsl.dsl.GeneratedItems
 import javaposse.jobdsl.dsl.JobManagement
@@ -73,6 +75,7 @@ abstract class AbstractTaskRunner {
 
         def jenkinsRule = new JenkinsRule()
         jenkinsRule.contextPath = '/jenkins'
+        jenkinsRule.pluginManager = new CustomPluginManager()
 
         // Only print severe logs from Jenkins to not clutter up the log.
         Logger.getLogger('').handlers.each {
